@@ -70,6 +70,7 @@ export default async function RootLayout({
     <html
       lang={settings?.defaultLang || "en"}
       className={`${inter.variable} ${outfit.variable} h-full antialiased dark`}
+      suppressHydrationWarning
     >
       <head>
         <script
