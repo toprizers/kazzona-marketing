@@ -1,0 +1,29 @@
+{
+  "node": {
+    "00962d629e159c2f6c4b25e919e1f2b9154b2b0340": {
+      "workers": {
+        "app/dashboard/pricing/page": {
+          "moduleId": 9551,
+          "async": false,
+          "exportedName": "getPricingConfig",
+          "filename": "src/app/actions/pricing.ts"
+        }
+      },
+      "exportedName": "getPricingConfig",
+      "filename": "src/app/actions/pricing.ts"
+    },
+    "40c6e8ba6e5794d81be4db11f235a2f133b241c0fa": {
+      "workers": {
+        "app/dashboard/pricing/page": {
+          "moduleId": 9551,
+          "async": false,
+          "exportedName": "savePricingConfig",
+          "filename": "src/app/actions/pricing.ts"
+        }
+      },
+      "exportedName": "savePricingConfig",
+      "filename": "src/app/actions/pricing.ts"
+    }
+  },
+  "edge": {}
+}

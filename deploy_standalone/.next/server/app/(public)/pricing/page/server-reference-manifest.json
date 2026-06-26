@@ -1,0 +1,77 @@
+{
+  "node": {
+    "00642faeea41e05f370619e73c4ad4684750268cfc": {
+      "workers": {
+        "app/(public)/pricing/page": {
+          "moduleId": 82771,
+          "async": false,
+          "exportedName": "getNavigationOptions",
+          "filename": "src/app/actions/header-footer.ts"
+        }
+      },
+      "exportedName": "getNavigationOptions",
+      "filename": "src/app/actions/header-footer.ts"
+    },
+    "00861b7f20195eb52af777f7bb2232bc155116be3e": {
+      "workers": {
+        "app/(public)/pricing/page": {
+          "moduleId": 82771,
+          "async": false,
+          "exportedName": "getHeaderFooterConfig",
+          "filename": "src/app/actions/header-footer.ts"
+        }
+      },
+      "exportedName": "getHeaderFooterConfig",
+      "filename": "src/app/actions/header-footer.ts"
+    },
+    "4083111c8a57343267a0ef5c194db572a8df3162d0": {
+      "workers": {
+        "app/(public)/pricing/page": {
+          "moduleId": 82771,
+          "async": false,
+          "exportedName": "saveHeaderConfig",
+          "filename": "src/app/actions/header-footer.ts"
+        }
+      },
+      "exportedName": "saveHeaderConfig",
+      "filename": "src/app/actions/header-footer.ts"
+    },
+    "40be2dc8798aa912673017eec5086740fc6fc561f0": {
+      "workers": {
+        "app/(public)/pricing/page": {
+          "moduleId": 82771,
+          "async": false,
+          "exportedName": "saveFooterConfig",
+          "filename": "src/app/actions/header-footer.ts"
+        }
+      },
+      "exportedName": "saveFooterConfig",
+      "filename": "src/app/actions/header-footer.ts"
+    },
+    "00962d629e159c2f6c4b25e919e1f2b9154b2b0340": {
+      "workers": {
+        "app/(public)/pricing/page": {
+          "moduleId": 82771,
+          "async": false,
+          "exportedName": "getPricingConfig",
+          "filename": "src/app/actions/pricing.ts"
+        }
+      },
+      "exportedName": "getPricingConfig",
+      "filename": "src/app/actions/pricing.ts"
+    },
+    "40c6e8ba6e5794d81be4db11f235a2f133b241c0fa": {
+      "workers": {
+        "app/(public)/pricing/page": {
+          "moduleId": 82771,
+          "async": false,
+          "exportedName": "savePricingConfig",
+          "filename": "src/app/actions/pricing.ts"
+        }
+      },
+      "exportedName": "savePricingConfig",
+      "filename": "src/app/actions/pricing.ts"
+    }
+  },
+  "edge": {}
+}

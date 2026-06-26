@@ -1,0 +1,3 @@
+module.exports=[49934,a=>{"use strict";var b=a.i(60404);a.s([],83285),a.i(83285),a.s(["00642faeea41e05f370619e73c4ad4684750268cfc",()=>b.getNavigationOptions,"00861b7f20195eb52af777f7bb2232bc155116be3e",()=>b.getHeaderFooterConfig,"4083111c8a57343267a0ef5c194db572a8df3162d0",()=>b.saveHeaderConfig,"40be2dc8798aa912673017eec5086740fc6fc561f0",()=>b.saveFooterConfig],49934)}];
+
+//# sourceMappingURL=_next-internal_server_app_%28public%29_blog_page_actions_0ryt0p3.js.map

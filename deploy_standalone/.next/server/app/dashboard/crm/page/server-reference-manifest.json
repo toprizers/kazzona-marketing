@@ -1,0 +1,17 @@
+{
+  "node": {
+    "60f2f6498a0e06e3fe46b08b79a798758b106106b2": {
+      "workers": {
+        "app/dashboard/crm/page": {
+          "moduleId": 14876,
+          "async": false,
+          "exportedName": "updateLeadStatus",
+          "filename": "src/app/actions/crm.ts"
+        }
+      },
+      "exportedName": "updateLeadStatus",
+      "filename": "src/app/actions/crm.ts"
+    }
+  },
+  "edge": {}
+}

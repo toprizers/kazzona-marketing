@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /api/
+
+Sitemap: https://kazzonamarketing.com/sitemap.xml

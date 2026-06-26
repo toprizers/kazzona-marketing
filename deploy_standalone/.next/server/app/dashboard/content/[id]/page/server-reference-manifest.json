@@ -1,0 +1,17 @@
+{
+  "node": {
+    "602eb6848c154fbea0972b09047e2b6b0a2ec5d2d8": {
+      "workers": {
+        "app/dashboard/content/[id]/page": {
+          "moduleId": 27428,
+          "async": false,
+          "exportedName": "updateContent",
+          "filename": "src/app/actions/content.ts"
+        }
+      },
+      "exportedName": "updateContent",
+      "filename": "src/app/actions/content.ts"
+    }
+  },
+  "edge": {}
+}
