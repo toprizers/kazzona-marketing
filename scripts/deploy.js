@@ -15,10 +15,24 @@ try {
     process.exit(1);
   }
 
-  // 2. Ensure working directory is clean
-  const status = execSync('git status --porcelain').toString();
-  if (status.trim() !== '') {
-    console.error("❌ Error: Working directory is not clean. Please commit your changes first.");
+  // 2. Ensure working directory is clean (ignore local-only files)
+
+  const rawStatus = execSync("git status --porcelain").toString();
+
+  const ignored = [
+    ".env",
+    "prisma/dev.db",
+    "deploy"
+  ];
+
+  const remaining = rawStatus
+    .split("\n")
+    .filter(Boolean)
+    .filter(line => !ignored.some(item => line.includes(item)));
+
+  if (remaining.length > 0) {
+    console.error("❌ Error: Working directory has uncommitted source changes:");
+    console.log(remaining.join("\n"));
     process.exit(1);
   }
 
@@ -48,6 +62,6 @@ try {
   // Attempt to recover by switching back to development branch
   try {
     execSync('git checkout development', { stdio: 'ignore' });
-  } catch (e) {}
+  } catch (e) { }
   process.exit(1);
 }
