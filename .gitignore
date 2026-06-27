@@ -43,7 +43,11 @@ next-env.d.ts
 /src/generated/prisma
 
 # Local database
-prisma/prisma/dev.db
+prisma/dev.db
+
+# Generated deployment folders
+deploy/
+deploy_standalone/
 
 # Zip backups
 *.zip
