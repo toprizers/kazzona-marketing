@@ -1,3 +1,0 @@
-module.exports=[38695,a=>{"use strict";var b=a.i(60404);a.s([],58020),a.i(58020),a.s(["00642faeea41e05f370619e73c4ad4684750268cfc",()=>b.getNavigationOptions,"00861b7f20195eb52af777f7bb2232bc155116be3e",()=>b.getHeaderFooterConfig,"4083111c8a57343267a0ef5c194db572a8df3162d0",()=>b.saveHeaderConfig,"40be2dc8798aa912673017eec5086740fc6fc561f0",()=>b.saveFooterConfig],38695)}];
-
-//# sourceMappingURL=0zjb_server_app_%28public%29_services_website-development_page_actions_00c9.c0.js.map
