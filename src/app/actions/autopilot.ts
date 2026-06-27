@@ -131,6 +131,7 @@ const autoPilotNiche = [
 
 // Execute a single autopilot run
 export async function triggerAutopilotInstant(taskId?: string) {
+  let activeTaskId: string | null = null;
   try {
     const session = await getSession();
     if (!session) return { error: "Not authorized" };
@@ -139,7 +140,6 @@ export async function triggerAutopilotInstant(taskId?: string) {
     let keyword = "";
     let instructions = "";
     let type = "BLOG";
-    let activeTaskId = null;
 
     // 0. Fetch task if available
     const pendingTask = taskId 
