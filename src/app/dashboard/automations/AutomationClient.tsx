@@ -58,6 +58,21 @@ export default function AutomationClient() {
     }
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target?.result;
+      if (typeof text === 'string') {
+        setCsvData(text);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // Reset input so same file can be selected again
+  };
+
   const handleToggleAutopilot = async (enabled: boolean) => {
     if (!config) return;
     setSaveLoading(true);
@@ -187,11 +202,26 @@ export default function AutomationClient() {
               <Upload className="w-5 h-5 text-primary" />
               Import CSV Schedule
             </CardTitle>
-            <CardDescription>Paste CSV records to queue custom schedules (Topic, Keyword, Type, Timing).</CardDescription>
+            <CardDescription>Select a CSV file from your computer or paste records below (Topic, Keyword, Instructions, Type, Timing).</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="flex items-center gap-4">
+              <input 
+                type="file" 
+                accept=".csv" 
+                id="csv-upload" 
+                className="hidden" 
+                onChange={handleFileUpload} 
+              />
+              <label htmlFor="csv-upload" className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium cursor-pointer border border-primary/30 hover:bg-primary/10 text-primary transition-colors">
+                <Upload className="w-4 h-4" />
+                Select CSV from PC
+              </label>
+              <span className="text-xs text-muted-foreground">Or paste records below</span>
+            </div>
+            
             <Textarea 
-              placeholder="Topic, Keyword, Type, Timing&#10;Digital Marketing Agency in Delhi, SEO Agency Delhi, PAGE, 2026-06-01&#10;Top 10 SEO Tips, SEO tips 2026, BLOG, 2026-06-02"
+              placeholder="Topic, Keyword, Instructions, Type, Timing&#10;Digital Marketing Agency, agency|delhi, focus on local SEO, PAGE, 2026-06-01&#10;Top 10 SEO Tips, SEO tips 2026, add 5 tips for beginners, BLOG, 2026-06-02"
               value={csvData}
               onChange={(e) => setCsvData(e.target.value)}
               className="font-mono text-xs h-32 bg-secondary/10"
@@ -260,7 +290,7 @@ export default function AutomationClient() {
                       <td className="px-4 py-3 text-muted-foreground text-xs max-w-[200px] truncate" title={run.secondaryKeyword || "-"}>
                         {run.secondaryKeyword || "-"}
                       </td>
-                      <td className="px-4 py-3 text-muted-foreground text-xs whitespace-nowrap">
+                      <td suppressHydrationWarning className="px-4 py-3 text-muted-foreground text-xs whitespace-nowrap">
                         {format(new Date(run.timestamp), "MMM d, yyyy h:mm:ss a")}
                       </td>
                       <td className="px-4 py-3">

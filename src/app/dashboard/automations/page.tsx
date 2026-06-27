@@ -2,7 +2,9 @@ import { prisma } from "@/lib/db";
 import AutomationClient from "./AutomationClient";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { format } from "date-fns";
-import { Clock, CheckCircle, XCircle } from "lucide-react";
+import { Clock, CheckCircle, XCircle, Play, Settings2 } from "lucide-react";
+import { triggerAutopilotInstant } from "@/app/actions/autopilot";
+import { revalidatePath } from "next/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -34,6 +36,7 @@ export default async function AutomationsPage() {
                   <th className="px-4 py-3 font-medium rounded-tl-md">Topic</th>
                   <th className="px-4 py-3 font-medium">Type</th>
                   <th className="px-4 py-3 font-medium">Keyword</th>
+                  <th className="px-4 py-3 font-medium">Instructions</th>
                   <th className="px-4 py-3 font-medium">Scheduled For</th>
                   <th className="px-4 py-3 font-medium rounded-tr-md">Status</th>
                 </tr>
@@ -41,7 +44,7 @@ export default async function AutomationsPage() {
               <tbody className="divide-y divide-border/40">
                 {tasks.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">
+                    <td colSpan={6} className="px-4 py-8 text-center text-muted-foreground">
                       No tasks scheduled yet. Import data above to get started.
                     </td>
                   </tr>
@@ -57,11 +60,28 @@ export default async function AutomationsPage() {
                         </span>
                       </td>
                       <td className="px-4 py-3 text-muted-foreground text-xs">{task.keyword || '-'}</td>
+                      <td className="px-4 py-3 text-muted-foreground text-xs truncate max-w-[150px]" title={task.instructions || ''}>{task.instructions || '-'}</td>
                       <td className="px-4 py-3 text-muted-foreground text-xs whitespace-nowrap">
                         {format(new Date(task.targetDate), "MMM d, yyyy h:mm a")}
                       </td>
                       <td className="px-4 py-3">
-                        {task.status === 'PENDING' && <span className="flex items-center gap-1 text-xs text-amber-500"><Clock className="w-3 h-3" /> Pending</span>}
+                        {task.status === 'PENDING' && (
+                          <div className="flex items-center gap-3">
+                            <span className="flex items-center gap-1 text-xs text-amber-500"><Clock className="w-3 h-3" /> Pending</span>
+                            <form action={async () => {
+                              "use server";
+                              await triggerAutopilotInstant(task.id);
+                              revalidatePath("/dashboard/automations");
+                            }}>
+                              <button type="submit" className="flex items-center gap-1 px-2 py-1 bg-primary text-primary-foreground hover:bg-primary/90 rounded text-[10px] font-bold uppercase tracking-wider transition-colors cursor-pointer">
+                                <Play className="w-2.5 h-2.5" /> Live
+                              </button>
+                            </form>
+                          </div>
+                        )}
+                        {task.status === 'PROCESSING' && (
+                          <span className="flex items-center gap-1 text-xs text-blue-500"><Settings2 className="w-3 h-3 animate-spin" /> Processing</span>
+                        )}
                         {task.status === 'COMPLETED' && <span className="flex items-center gap-1 text-xs text-emerald-500"><CheckCircle className="w-3 h-3" /> Done</span>}
                         {task.status === 'FAILED' && <span className="flex items-center gap-1 text-xs text-destructive"><XCircle className="w-3 h-3" /> Failed</span>}
                       </td>

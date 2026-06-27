@@ -16,6 +16,7 @@ export async function POST(req: Request) {
     const keywordIdx = headers.findIndex((h: string) => h.includes("keyword"));
     const typeIdx = headers.findIndex((h: string) => h.includes("type"));
     const timingIdx = headers.findIndex((h: string) => h.includes("timing") || h.includes("date"));
+    const instructionsIdx = headers.findIndex((h: string) => h.includes("instruction") || h.includes("prompt") || h.includes("guide"));
 
     if (topicIdx === -1) {
       return NextResponse.json({ error: "CSV must contain a 'Topic' column" }, { status: 400 });
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
       
       const topic = cols[topicIdx];
       const keyword = keywordIdx !== -1 ? cols[keywordIdx] : null;
+      const instructions = instructionsIdx !== -1 && cols[instructionsIdx] ? cols[instructionsIdx] : null;
       const type = typeIdx !== -1 && cols[typeIdx] ? cols[typeIdx].toUpperCase() : "BLOG";
       
       let targetDate = new Date();
@@ -45,6 +47,7 @@ export async function POST(req: Request) {
         tasksToCreate.push({
           topic,
           keyword: keyword || null,
+          instructions: instructions || null,
           type: type === "PAGE" ? "PAGE" : "BLOG",
           targetDate,
           status: "PENDING",

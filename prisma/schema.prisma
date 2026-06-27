@@ -96,14 +96,15 @@ model Redirect {
 }
 
 model AiGenerationTask {
-  id          String   @id @default(cuid())
-  topic       String
-  keyword     String?
-  type        String   @default("BLOG") // BLOG or PAGE
-  targetDate  DateTime
-  status      String   @default("PENDING") // PENDING, COMPLETED, FAILED
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(cuid())
+  topic        String
+  keyword      String?
+  instructions String?
+  type         String   @default("BLOG") // BLOG or PAGE
+  targetDate   DateTime
+  status       String   @default("PENDING") // PENDING, COMPLETED, FAILED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model PageView {

@@ -1,0 +1,25 @@
+{
+  "enabled": false,
+  "intervalSeconds": 60,
+  "lastGeneratedAt": "2026-06-27T13:14:05.065Z",
+  "history": [
+    {
+      "topic": "Best Digital Marketing Agency in Paschim Vihar",
+      "type": "BLOG",
+      "slug": "best-digital-marketing-agency-in-paschim-vihar",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-27T13:14:05.065Z",
+      "primaryKeyword": "Best Digital Marketing Agency in Paschim Vihar",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
+    {
+      "topic": "AI tools every SEO specialist needs in 2026",
+      "type": "BLOG",
+      "slug": "ai-tools-every-seo-specialist-needs-in-2026",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-27T13:04:41.974Z",
+      "primaryKeyword": "AI tools every SEO specialist needs in 2026",
+      "secondaryKeyword": "organic traffic, on-page SEO, keyword research, link building"
+    }
+  ]
+}

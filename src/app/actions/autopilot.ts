@@ -130,24 +130,50 @@ const autoPilotNiche = [
 ];
 
 // Execute a single autopilot run
-export async function triggerAutopilotInstant() {
+export async function triggerAutopilotInstant(taskId?: string) {
   try {
     const session = await getSession();
     if (!session) return { error: "Not authorized" };
 
-    // Find next niche topic that does not exist in DB
     let topic = "";
-    for (const t of autoPilotNiche) {
-      const slug = slugify(t);
-      const existing = await prisma.post.findUnique({ where: { slug } });
-      if (!existing) {
-        topic = t;
-        break;
-      }
-    }
+    let keyword = "";
+    let instructions = "";
+    let type = "BLOG";
+    let activeTaskId = null;
 
-    if (!topic) {
-      topic = `${autoPilotNiche[Math.floor(Math.random() * autoPilotNiche.length)]} - Edition ${Math.floor(Math.random() * 1000)}`;
+    // 0. Fetch task if available
+    const pendingTask = taskId 
+      ? await prisma.aiGenerationTask.findUnique({ where: { id: taskId } })
+      : await prisma.aiGenerationTask.findFirst({
+          where: { status: "PENDING" },
+          orderBy: { targetDate: 'asc' }
+        });
+
+    if (pendingTask && pendingTask.status === "PENDING") {
+      topic = pendingTask.topic;
+      keyword = pendingTask.keyword || "";
+      instructions = pendingTask.instructions || "";
+      type = pendingTask.type;
+      activeTaskId = pendingTask.id;
+      
+      await prisma.aiGenerationTask.update({
+        where: { id: activeTaskId },
+        data: { status: "PROCESSING" }
+      });
+    } else {
+      // Find next niche topic that does not exist in DB
+      for (const t of autoPilotNiche) {
+        const slug = slugify(t);
+        const existing = await prisma.post.findUnique({ where: { slug } });
+        if (!existing) {
+          topic = t;
+          break;
+        }
+      }
+
+      if (!topic) {
+        topic = `${autoPilotNiche[Math.floor(Math.random() * autoPilotNiche.length)]} - Edition ${Math.floor(Math.random() * 1000)}`;
+      }
     }
 
     const slug = slugify(topic);
@@ -208,9 +234,9 @@ export async function triggerAutopilotInstant() {
         You are an expert SEO Content Writer holding a Google E-E-A-T (Experience, Expertise, Authoritativeness, and Trustworthiness) certified writing standard.
         Write an extremely detailed, high-quality premium blog post about "${topic}".
         
-        Primary Keyword to naturally include in paragraph context: ${keywords.primary}
+        Primary Keyword to naturally include in paragraph context: ${keyword || keywords.primary}
         Secondary Keywords to include throughout the article: ${keywords.secondary}
-        
+        ${instructions ? `\nCRITICAL SPECIFIC INSTRUCTIONS:\n${instructions}\n` : ''}
         CRITICAL INSTRUCTIONS:
         - Return ONLY valid HTML code. No markdown, no "Here is your html", just raw HTML elements.
         - Start directly with an introductory <p> tag with class="lead text-xl text-muted-foreground mb-6".
@@ -286,19 +312,39 @@ export async function triggerAutopilotInstant() {
 
     // Save to DB
     let admin = await prisma.adminUser.findFirst();
-    await prisma.post.create({
-      data: {
-        title: topic,
-        slug,
-        content: rawHtmlContent,
-        seoTitle,
-        seoDesc,
-        published: true,
-        authorId: admin?.id || 'automated-worker',
-        primaryKeyword: keywords.primary,
-        secondaryKeyword: keywords.secondary,
-      }
-    });
+    if (type === "PAGE") {
+      await prisma.page.create({
+        data: {
+          title: topic,
+          slug,
+          content: rawHtmlContent,
+          seoTitle,
+          seoDesc,
+          published: true,
+        }
+      });
+    } else {
+      await prisma.post.create({
+        data: {
+          title: topic,
+          slug,
+          content: rawHtmlContent,
+          seoTitle,
+          seoDesc,
+          published: true,
+          authorId: admin?.id || 'automated-worker',
+          primaryKeyword: keyword || keywords.primary,
+          secondaryKeyword: keywords.secondary,
+        }
+      });
+    }
+
+    if (activeTaskId) {
+      await prisma.aiGenerationTask.update({
+        where: { id: activeTaskId },
+        data: { status: "COMPLETED" }
+      });
+    }
 
     // Update history in config
     const config = await getAutopilotConfig();
@@ -319,6 +365,12 @@ export async function triggerAutopilotInstant() {
     return { success: true, topic, slug };
   } catch (err: any) {
     console.error("Autopilot generation failed completely:", err);
+    if (activeTaskId) {
+      await prisma.aiGenerationTask.update({
+        where: { id: activeTaskId },
+        data: { status: "FAILED" }
+      });
+    }
     
     // Log failure in history
     try {

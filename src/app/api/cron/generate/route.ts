@@ -65,7 +65,7 @@ export async function POST(req: Request) {
         const contentPrompt = `
           You are an expert SEO Content Writer. Write a highly detailed, 1000+ word blog post about "${topic}".
           The primary keywords to include naturally are: ${keyword || topic}.
-          
+          ${task.instructions ? `\n          ADDITIONAL REQUIREMENTS/INSTRUCTIONS:\n          ${task.instructions}\n` : ''}
           CRITICAL INSTRUCTIONS:
           - Return ONLY valid HTML code. No markdown, no "Here is your html", just raw HTML elements.
           - Start directly with an introductory <p> tag with class="lead text-xl text-muted-foreground mb-6".

@@ -41,3 +41,15 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Local database
+prisma/prisma/dev.db
+
+# Zip backups
+*.zip
+
+
+
+# CSV samples (optional)
+demo-schedule.csv
+demo-schedule-v2.csv
