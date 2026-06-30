@@ -1,8 +1,26 @@
 {
-  "enabled": false,
+  "enabled": true,
   "intervalSeconds": 60,
-  "lastGeneratedAt": "2026-06-30T19:08:23.183Z",
+  "lastGeneratedAt": "2026-06-30T19:27:18.880Z",
   "history": [
+    {
+      "topic": "Advertising Agency in Azadpur | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "advertising-agency-in-azadpur-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:27:18.880Z",
+      "primaryKeyword": "Advertising Agency in Azadpur | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
+    {
+      "topic": "Website Development Company in Azadpur | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "website-development-company-in-azadpur-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:26:14.357Z",
+      "primaryKeyword": "Website Development Company in Azadpur | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
     {
       "topic": "How to Optimize Core Web Vitals for SEO in 2026",
       "type": "BLOG",

@@ -169,6 +169,9 @@ export function Header({
 
         {/* Dynamic CTA button */}
         <div className="hidden lg:flex items-center gap-4">
+          <Link href="/search" className="p-2 text-muted-foreground hover:text-primary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/50">
+            <Search className="w-5 h-5" />
+          </Link>
           {isLoggedIn && (
             <Link href="/dashboard" className="text-sm font-medium text-accent hover:text-accent/80 transition-colors">Dashboard</Link>
           )}
@@ -178,9 +181,14 @@ export function Header({
         </div>
 
         {/* Mobile menu trigger */}
-        <button className="lg:hidden text-foreground p-2 z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2 z-50">
+          <Link href="/search" className="p-2 text-muted-foreground hover:text-primary transition-colors">
+            <Search className="w-5 h-5" />
+          </Link>
+          <button className="text-foreground p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav layout */}
