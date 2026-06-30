@@ -34,6 +34,30 @@ export default function AutomationClient() {
     loadConfig();
   }, []);
 
+  // Background daemon for Autopilot execution
+  useEffect(() => {
+    if (!config || !config.enabled) return;
+
+    let isProcessing = false;
+    const interval = setInterval(async () => {
+      if (isProcessing) return; // Prevent overlapping runs
+      isProcessing = true;
+      try {
+        console.log("Background daemon triggered autopilot run.");
+        await triggerAutopilotInstant();
+        const cfg = await getAutopilotConfig();
+        setConfig(cfg);
+        router.refresh();
+      } catch (err) {
+        console.error("Background daemon error:", err);
+      } finally {
+        isProcessing = false;
+      }
+    }, config.intervalSeconds * 1000);
+
+    return () => clearInterval(interval);
+  }, [config?.enabled, config?.intervalSeconds, router]);
+
   const handleImport = async () => {
     if (!csvData.trim()) return;
     setCsvLoading(true);
@@ -171,8 +195,11 @@ export default function AutomationClient() {
             {/* Toggle Switch */}
             <div className="flex items-center justify-between p-4 bg-secondary/10 border border-border/30 rounded-xl">
               <div>
-                <p className="font-semibold text-sm">Autopilot Poster Active</p>
-                <p className="text-xs text-muted-foreground mt-0.5">When active, the background script will post blogs automatically.</p>
+                <p className="font-semibold text-sm flex items-center gap-2">
+                  <Play className="w-4 h-4 text-emerald-500" />
+                  Start / Run Background Daemon
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">Toggle ON to keep generating blogs automatically in the background every X minutes.</p>
               </div>
               <button
                 onClick={() => handleToggleAutopilot(!config.enabled)}
