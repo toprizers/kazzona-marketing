@@ -290,7 +290,6 @@ export default function SEOClient() {
           { id: "onpage", label: "📝 On-Page SEO", desc: "Meta tags, dynamic slug editor, canonical & schema markup" },
           { id: "technical", label: "⚙️ Technical SEO", desc: "Robots.txt config, XML sitemaps, structured schemas" },
           { id: "redirects", label: "🔗 Redirects", desc: "Dynamic 301 & 302 request redirect manager" },
-          { id: "integrations", label: "📊 Integrations", desc: "GA4, GTM, Google Search Console tag setups" },
           { id: "i18n", label: "🌐 i18n & Mobile", desc: "Locales status & hreflang generation controls" },
           { id: "performance", label: "🚀 Performance", desc: "Speed optimization and compiler caching stats" },
         ].map((tab) => (

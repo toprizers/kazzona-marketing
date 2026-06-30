@@ -30,7 +30,6 @@ const sidebarLinks = [
   { name: "Automations", icon: Zap, href: "/dashboard/automations" },
   { name: "Testimonials", icon: Star, href: "/dashboard/testimonials" },
   { name: "Pricing", icon: CreditCard, href: "/dashboard/pricing" },
-  { name: "Integrations", icon: Blocks, href: "/dashboard/integrations" },
   { name: "Settings", icon: Settings, href: "/dashboard/settings" },
 ];
 

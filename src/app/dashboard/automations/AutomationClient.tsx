@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import * as XLSX from "xlsx";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -22,6 +23,7 @@ export default function AutomationClient() {
   const [saveLoading, setSaveLoading] = useState(false);
   const [triggerLoading, setTriggerLoading] = useState(false);
   const [message, setMessage] = useState<{type: "success" | "error", text: string} | null>(null);
+  const [customFreqMode, setCustomFreqMode] = useState(false);
 
   // Load configuration on mount
   useEffect(() => {
@@ -58,19 +60,40 @@ export default function AutomationClient() {
     }
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const text = event.target?.result;
-      if (typeof text === 'string') {
-        setCsvData(text);
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = ''; // Reset input so same file can be selected again
+    if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+      const data = await file.arrayBuffer();
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const csvText = XLSX.utils.sheet_to_csv(firstSheet);
+      setCsvData(csvText);
+    } else {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const text = event.target?.result;
+        if (typeof text === 'string') {
+          setCsvData(text);
+        }
+      };
+      reader.readAsText(file);
+    }
+    e.target.value = '';
+  };
+
+  const downloadAutomationTemplate = () => {
+    const wsData = [
+      ["Topic", "Keyword", "Instructions", "Type", "Timing"],
+      ["Best Digital Marketing Agency in Delhi", "digital marketing|delhi", "Focus on local SEO benefits", "BLOG", "17:00:00 : 01:07:2026"],
+      ["Top 10 SEO Tips for 2026", "SEO tips 2026", "Add 5 practical tips for beginners", "BLOG", "10:30:00 : 02:07:2026"],
+      ["Web Development Services", "web development|india", "Highlight React and Next.js expertise", "PAGE", ""],
+    ];
+    const ws = XLSX.utils.aoa_to_sheet(wsData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Schedule");
+    XLSX.writeFile(wb, "Kazzona_Automation_Schedule_Template.xlsx");
   };
 
   const handleToggleAutopilot = async (enabled: boolean) => {
@@ -165,20 +188,60 @@ export default function AutomationClient() {
             {/* Frequency Dropdown */}
             <div className="space-y-2">
               <label className="text-xs text-muted-foreground uppercase font-bold tracking-wider">Posting Frequency</label>
-              <select
-                value={config.intervalSeconds}
-                onChange={(e) => handleUpdateFrequency(Number(e.target.value))}
-                disabled={saveLoading}
-                className="w-full bg-secondary/15 border border-border/40 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
-              >
-                <option value={5}>5 Seconds (Demo / Testing)</option>
-                <option value={60}>1 Minute (Testing)</option>
-                <option value={3600}>Every 1 Hour</option>
-                <option value={43200}>Every 12 Hours</option>
-                <option value={86400}>Every 24 Hours</option>
-                <option value={172800}>Every 2 Days</option>
-                <option value={432000}>Every 5 Days</option>
-              </select>
+              <div className="flex flex-col gap-2">
+                <select
+                  value={
+                    customFreqMode
+                      ? "custom"
+                      : [5, 60, 3600, 43200, 86400, 172800, 432000].includes(config.intervalSeconds)
+                        ? config.intervalSeconds
+                        : "custom"
+                  }
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "custom") {
+                      setCustomFreqMode(true);
+                    } else {
+                      setCustomFreqMode(false);
+                      handleUpdateFrequency(Number(val));
+                    }
+                  }}
+                  disabled={saveLoading}
+                  className="w-full bg-secondary/15 border border-border/40 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                >
+                  <option value={5}>5 Seconds (Demo / Testing)</option>
+                  <option value={60}>1 Minute (Testing)</option>
+                  <option value={3600}>Every 1 Hour</option>
+                  <option value={43200}>Every 12 Hours</option>
+                  <option value={86400}>Every 24 Hours</option>
+                  <option value={172800}>Every 2 Days</option>
+                  <option value={432000}>Every 5 Days</option>
+                  <option value="custom">Custom (Minutes)</option>
+                </select>
+                {customFreqMode && (
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      min="1"
+                      defaultValue={Math.round(config.intervalSeconds / 60)}
+                      className="flex-1 bg-secondary/15 border border-border/40 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      placeholder="Enter minutes (e.g. 500)"
+                    />
+                    <Button
+                      size="sm"
+                      onClick={(e) => {
+                        const input = (e.currentTarget.parentElement?.querySelector('input') as HTMLInputElement);
+                        const mins = Number(input?.value);
+                        if (mins > 0) handleUpdateFrequency(mins * 60);
+                      }}
+                      disabled={saveLoading}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
+                      {saveLoading ? "..." : "Set"}
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Trigger instant generation */}
@@ -195,37 +258,46 @@ export default function AutomationClient() {
           </CardContent>
         </Card>
 
-        {/* CSV Scheduler */}
+        {/* CSV / Excel Scheduler */}
         <Card className="bg-card border-border/40">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Upload className="w-5 h-5 text-primary" />
-              Import CSV Schedule
+              Import CSV / Excel Schedule
             </CardTitle>
-            <CardDescription>Select a CSV file from your computer or paste records below (Topic, Keyword, Instructions, Type, Timing).</CardDescription>
+            <CardDescription>Select a CSV or Excel file from your computer or paste records below (Topic, Keyword, Instructions, Type, Timing).</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <input 
                 type="file" 
-                accept=".csv" 
+                accept=".csv,.xlsx,.xls" 
                 id="csv-upload" 
                 className="hidden" 
                 onChange={handleFileUpload} 
               />
               <label htmlFor="csv-upload" className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium cursor-pointer border border-primary/30 hover:bg-primary/10 text-primary transition-colors">
                 <Upload className="w-4 h-4" />
-                Select CSV from PC
+                Select File from PC
               </label>
+              <button
+                onClick={downloadAutomationTemplate}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium cursor-pointer border border-border/40 hover:bg-secondary/20 text-muted-foreground transition-colors"
+              >
+                Download Demo Template
+              </button>
               <span className="text-xs text-muted-foreground">Or paste records below</span>
             </div>
             
             <Textarea 
-              placeholder="Topic, Keyword, Instructions, Type, Timing&#10;Digital Marketing Agency, agency|delhi, focus on local SEO, PAGE, 2026-06-01&#10;Top 10 SEO Tips, SEO tips 2026, add 5 tips for beginners, BLOG, 2026-06-02"
+              placeholder={"Topic, Keyword, Instructions, Type, Timing\nDigital Marketing Agency, agency|delhi, focus on local SEO, BLOG, 17:00:00 : 01:07:2026\nTop 10 SEO Tips, SEO tips 2026, add 5 tips for beginners, BLOG, 10:30:00 : 02:07:2026"}
               value={csvData}
               onChange={(e) => setCsvData(e.target.value)}
               className="font-mono text-xs h-32 bg-secondary/10"
             />
+            <p className="text-[10px] text-muted-foreground">
+              Time format: <code className="bg-secondary/30 px-1 py-0.5 rounded">HH:mm:ss : DD:MM:YYYY</code> — If timing is blank, blogs auto-schedule 1 hour apart.
+            </p>
             <Button 
               onClick={handleImport} 
               disabled={csvLoading || !csvData.trim()}

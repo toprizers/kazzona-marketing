@@ -1,8 +1,53 @@
 {
   "enabled": false,
   "intervalSeconds": 60,
-  "lastGeneratedAt": "2026-06-27T13:14:05.065Z",
+  "lastGeneratedAt": "2026-06-30T19:08:23.183Z",
   "history": [
+    {
+      "topic": "How to Optimize Core Web Vitals for SEO in 2026",
+      "type": "BLOG",
+      "slug": "how-to-optimize-core-web-vitals-for-seo-in-2026",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:08:23.183Z",
+      "primaryKeyword": "How to Optimize Core Web Vitals for SEO in 2026",
+      "secondaryKeyword": "organic traffic, on-page SEO, keyword research, link building"
+    },
+    {
+      "topic": "The Future of AI in Digital Marketing",
+      "type": "BLOG",
+      "slug": "the-future-of-ai-in-digital-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:07:27.301Z",
+      "primaryKeyword": "The Future of AI in Digital Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
+    {
+      "topic": "Website Development Company in Adarsh Nagar | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "website-development-company-in-adarsh-nagar-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:07:24.206Z",
+      "primaryKeyword": "Website Development Company in Adarsh Nagar | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
+    {
+      "topic": "SEO Company in Adarsh Nagar | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "seo-company-in-adarsh-nagar-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:06:40.667Z",
+      "primaryKeyword": "SEO Company in Adarsh Nagar | Kazzona Marketing",
+      "secondaryKeyword": "organic traffic, on-page SEO, keyword research, link building"
+    },
+    {
+      "topic": "Digital Marketing Agency in Adarsh Nagar | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "digital-marketing-agency-in-adarsh-nagar-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:06:37.792Z",
+      "primaryKeyword": "Digital Marketing Agency in Adarsh Nagar | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
     {
       "topic": "Best Digital Marketing Agency in Paschim Vihar",
       "type": "BLOG",

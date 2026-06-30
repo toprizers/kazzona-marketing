@@ -390,3 +390,37 @@ export async function triggerAutopilotInstant(taskId?: string) {
     return { error: err.message || "Autopilot generation failed" };
   }
 }
+
+// Reschedule a pending task to a new date/time
+export async function rescheduleTask(taskId: string, newDate: string) {
+  try {
+    const session = await getSession();
+    if (!session) return { error: "Not authorized" };
+
+    const parsed = new Date(newDate);
+    if (isNaN(parsed.getTime())) {
+      return { error: "Invalid date format" };
+    }
+
+    // Check for collision
+    const existing = await prisma.aiGenerationTask.findFirst({
+      where: {
+        targetDate: parsed,
+        NOT: { id: taskId },
+      },
+    });
+    if (existing) {
+      return { error: `Another blog "${existing.topic}" is already scheduled at this exact time.` };
+    }
+
+    await prisma.aiGenerationTask.update({
+      where: { id: taskId },
+      data: { targetDate: parsed },
+    });
+
+    return { success: true };
+  } catch (err: any) {
+    console.error("Failed to reschedule task:", err);
+    return { error: err.message || "Failed to reschedule" };
+  }
+}

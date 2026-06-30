@@ -4,8 +4,6 @@ import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { cookies } from "next/headers";
 import { getHeaderFooterConfig } from "@/app/actions/header-footer";
 import { OfferPopup } from "@/components/ui/OfferPopup";
-import { MouseGlow } from "@/components/interactive/MouseGlow";
-
 export default async function PublicLayout({
   children,
 }: {
@@ -19,7 +17,6 @@ export default async function PublicLayout({
 
   return (
     <div className="flex flex-col min-h-screen relative noise-overlay">
-      <MouseGlow />
       <AnalyticsTracker />
       <Header isLoggedIn={isLoggedIn} config={header} />
       <main className="flex-1 pt-[88px]">{children}</main>
