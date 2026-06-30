@@ -1,8 +1,44 @@
 {
-  "enabled": false,
+  "enabled": true,
   "intervalSeconds": 60,
-  "lastGeneratedAt": "2026-06-30T19:08:23.183Z",
+  "lastGeneratedAt": "2026-06-30T19:25:16.728Z",
   "history": [
+    {
+      "topic": "SEO Company in Azadpur | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "seo-company-in-azadpur-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:25:16.728Z",
+      "primaryKeyword": "SEO Company in Azadpur | Kazzona Marketing",
+      "secondaryKeyword": "organic traffic, on-page SEO, keyword research, link building"
+    },
+    {
+      "topic": "Digital Marketing Agency in Azadpur | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "digital-marketing-agency-in-azadpur-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:24:08.587Z",
+      "primaryKeyword": "Digital Marketing Agency in Azadpur | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
+    {
+      "topic": "Performance Marketing Company in Adarsh Nagar | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "performance-marketing-company-in-adarsh-nagar-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:20:37.375Z",
+      "primaryKeyword": "Performance Marketing Company in Adarsh Nagar | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
+    {
+      "topic": "Advertising Agency in Adarsh Nagar | Kazzona Marketing",
+      "type": "BLOG",
+      "slug": "advertising-agency-in-adarsh-nagar-kazzona-marketing",
+      "status": "COMPLETED",
+      "timestamp": "2026-06-30T19:17:04.624Z",
+      "primaryKeyword": "Advertising Agency in Adarsh Nagar | Kazzona Marketing",
+      "secondaryKeyword": "inbound marketing, brand awareness, conversion rate, social channels"
+    },
     {
       "topic": "How to Optimize Core Web Vitals for SEO in 2026",
       "type": "BLOG",
