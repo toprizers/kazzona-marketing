@@ -25,6 +25,6 @@ export async function authenticate(email: string, password: string) {
     return { success: true };
   } catch (error) {
     console.error("Auth error:", error);
-    return { error: "An unexpected error occurred during authentication." };
+    return { error: `Server Error: ${error instanceof Error ? error.message : String(error)}` };
   }
 }

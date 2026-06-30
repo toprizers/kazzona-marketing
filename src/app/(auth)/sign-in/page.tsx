@@ -27,8 +27,8 @@ export default function SignInPage() {
         router.push("/dashboard");
         router.refresh(); // Force a full refresh to update Layout props
       }
-    } catch (err) {
-      setError("An unexpected error occurred.");
+    } catch (err: any) {
+      setError(err?.message || "An unexpected error occurred.");
     } finally {
       setIsLoading(false);
     }
