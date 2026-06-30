@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Upload, FileSpreadsheet, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import Papa from "papaparse";
+import * as XLSX from 'xlsx';
 import { bulkCreateContent } from "@/app/actions/content";
 
 export default function BulkUploadPage() {
@@ -21,44 +22,74 @@ export default function BulkUploadPage() {
     }
   };
 
-  const handleUpload = () => {
+  const downloadTemplate = () => {
+    const wsData = [
+      ["title", "content", "type", "slug", "published", "publishAt", "seoTitle", "seoDesc"],
+      ["My First Blog Post", "<p>Content of blog post</p>", "BLOG", "my-first-blog", "TRUE", "2026-06-05T10:00", "Optimized SEO Title", "Description"],
+      ["My Services Page", "<p>Services content</p>", "PAGE", "services-custom", "TRUE", "", "Services SEO Title", "Services Description"]
+    ];
+    const ws = XLSX.utils.aoa_to_sheet(wsData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Template");
+    XLSX.writeFile(wb, "Kazzona_Content_Upload_Template.xlsx");
+  };
+
+  const processData = async (data: any[]) => {
+    try {
+      const items = data.map((row: any) => ({
+        title: row.title,
+        slug: row.slug || row.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, ""),
+        content: row.content || "",
+        seoTitle: row.seoTitle || "",
+        seoDesc: row.seoDesc || "",
+        published: String(row.published).toLowerCase() === "true",
+        publishAt: row.publishAt ? new Date(row.publishAt) : null,
+        type: (row.type || "BLOG").toUpperCase() as "BLOG" | "PAGE",
+      }));
+
+      const res = await bulkCreateContent(items);
+      setResult(res as any);
+      if (res.success) {
+        router.refresh();
+      }
+    } catch (error) {
+      setResult({ success: false, errors: ["Failed to parse and upload content."] });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleUpload = async () => {
     if (!file) return;
 
     setIsSubmitting(true);
     setResult(null);
 
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: async (results) => {
-        try {
-          const items = results.data.map((row: any) => ({
-            title: row.title,
-            slug: row.slug || row.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, ""),
-            content: row.content || "",
-            seoTitle: row.seoTitle || "",
-            seoDesc: row.seoDesc || "",
-            published: String(row.published).toLowerCase() === "true",
-            publishAt: row.publishAt ? new Date(row.publishAt) : null,
-            type: (row.type || "BLOG").toUpperCase() as "BLOG" | "PAGE",
-          }));
-
-          const res = await bulkCreateContent(items);
-          setResult(res as any);
-          if (res.success) {
-            router.refresh();
-          }
-        } catch (error) {
-          setResult({ success: false, errors: ["Failed to parse and upload content."] });
-        } finally {
+    if (file.name.endsWith('.csv')) {
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+          processData(results.data);
+        },
+        error: (error) => {
+          setResult({ success: false, errors: [error.message] });
           setIsSubmitting(false);
         }
-      },
-      error: (error) => {
-        setResult({ success: false, errors: [error.message] });
+      });
+    } else {
+      try {
+        const data = await file.arrayBuffer();
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        const json = XLSX.utils.sheet_to_json(worksheet);
+        processData(json);
+      } catch (err: any) {
+        setResult({ success: false, errors: [err.message || "Failed to read Excel file."] });
         setIsSubmitting(false);
       }
-    });
+    }
   };
 
   return (
@@ -81,14 +112,20 @@ export default function BulkUploadPage() {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <FileSpreadsheet className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="text-lg font-bold mb-2">Select CSV File</h3>
+            <h3 className="text-lg font-bold mb-2">Select CSV or Excel File</h3>
             <p className="text-muted-foreground text-sm mb-6 max-w-sm">
-              Your CSV must include columns for title, content, type (BLOG/PAGE), and optionally publishAt.
+              Your file must include columns for title, content, type (BLOG/PAGE), and optionally publishAt.
             </p>
+            
+            <div className="flex items-center gap-4 mb-6">
+              <Button onClick={downloadTemplate} variant="outline" className="border-border/40">
+                Download Template
+              </Button>
+            </div>
             
             <input 
               type="file" 
-              accept=".csv" 
+              accept=".csv,.xlsx,.xls" 
               onChange={handleFileChange} 
               className="hidden" 
               id="csv-upload" 
@@ -149,9 +186,9 @@ export default function BulkUploadPage() {
 
         <div className="space-y-6">
           <div className="bg-secondary/30 rounded-xl p-6 border border-border/40">
-            <h3 className="font-bold mb-4">CSV Format Guide</h3>
+            <h3 className="font-bold mb-4">CSV / Excel Format Guide</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Ensure your CSV file contains the following exact column headers:
+              Ensure your file contains the following exact column headers (row 1):
             </p>
             <ul className="space-y-3 text-sm">
               <li><code className="bg-background px-1.5 py-0.5 rounded text-primary border border-border/50">title</code> (Required)</li>
