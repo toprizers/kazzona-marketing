@@ -46,7 +46,7 @@ export default async function ServicesPage() {
       )}
       <div className="container mx-auto px-6 pt-24 pb-12 max-w-5xl">
         <h1 className="font-heading text-5xl font-bold mb-6 text-foreground">
-          Enterprise <span className="text-primary">Services</span>
+          Digital Marketing <span className="text-primary">Services</span>
         </h1>
         <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
           Comprehensive digital solutions engineered for scale.

@@ -28,11 +28,22 @@ export const metadata: Metadata = {
     title: "Kazzona Marketing Agency | Strategy. Creativity. Results.",
     description: "We don't just market. We grow brands. Data-driven SEO, premium web development, and high-ROI advertising.",
     siteName: "Kazzona Marketing Agency",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 1200,
+        height: 630,
+        alt: "Kazzona Marketing Agency - Digital Marketing Agency in Delhi NCR",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kazzona Marketing Agency",
-    description: "We don't just market. We grow brands.",
+    title: "Kazzona Marketing Agency | Strategy. Creativity. Results.",
+    description: "We don't just market. We grow brands. Data-driven SEO, premium web development, and high-ROI advertising.",
+    images: ["/icon.svg"],
+    site: "@kazzonamarketing",
+    creator: "@kazzonamarketing",
   },
   robots: {
     index: true,
@@ -49,7 +60,7 @@ export const metadata: Metadata = {
     icon: "/icon.svg",
     shortcut: "/icon.svg",
     apple: "/icon.svg",
-  }
+  },
 };
 
 export default async function RootLayout({
@@ -83,7 +94,7 @@ export default async function RootLayout({
               "image": "https://kazzonamarketing.com/icon.svg",
               "@id": "https://kazzonamarketing.com",
               "url": "https://kazzonamarketing.com",
-              "telephone": "+919999568910",
+              "telephone": "+91-9999568910",
               "email": "official.kazzona@gmail.com",
               "address": {
                 "@type": "PostalAddress",
@@ -94,7 +105,7 @@ export default async function RootLayout({
                 "addressCountry": "IN"
               },
               "sameAs": [
-                "https://twitter.com/kazzonamarketing",
+                "https://x.com/kazzonamarketing",
                 "https://linkedin.com/company/kazzonamarketing",
                 "https://instagram.com/kazzona.agency"
               ]
@@ -135,6 +146,7 @@ export default async function RootLayout({
             }}
           />
         )}
+        <link rel="alternate" hrefLang="en-IN" href="https://kazzonamarketing.com" />
         {settings?.globalHeadCode && (
           <div
             style={{ display: "none" }}

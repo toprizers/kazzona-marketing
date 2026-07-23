@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Dynamic landing page sitemap items (include all pages from DB that aren't already in core)
-  const coreSlugSet = new Set(["home", "about", "services", "case-studies", "contact",
+  const coreSlugSet = new Set(["home", "about", "services", "case-studies", "contact", "pricing",
     "services/website-development", "services/seo", "services/advertisement",
     "services/email-marketing", "services/graphic-designing"]);
   
@@ -52,6 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/services/graphic-designing`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.85 },
     { url: `${baseUrl}/case-studies`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${baseUrl}/pricing`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.85 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "daily" as const, priority: 0.8 },
   ];
 

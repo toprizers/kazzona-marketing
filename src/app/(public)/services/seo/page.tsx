@@ -4,6 +4,21 @@ import SEOClient from "./SEOClient";
 export const metadata = {
   title: "Enterprise SEO Services in India | Kazzona Marketing",
   description: "Rank #1 on Google India. We help Indian startups and enterprises dominate organic search, drive high-intent traffic, and scale revenue.",
+  alternates: {
+    canonical: "https://kazzonamarketing.com/services/seo",
+  },
+  openGraph: {
+    title: "Enterprise SEO Services in India | Kazzona Marketing",
+    description: "Rank #1 on Google India. We help Indian startups and enterprises dominate organic search, drive high-intent traffic, and scale revenue.",
+    url: "https://kazzonamarketing.com/services/seo",
+    images: [{ url: "/icon.svg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enterprise SEO Services in India | Kazzona Marketing",
+    description: "Rank #1 on Google India. We help Indian startups and enterprises dominate organic search, drive high-intent traffic, and scale revenue.",
+    images: ["/icon.svg"],
+  },
 };
 
 export default async function SEOPage() {

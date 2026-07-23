@@ -65,7 +65,7 @@ export default async function HomePage() {
                 ],
                 "contactPoint": {
                   "@type": "ContactPoint",
-                  "telephone": "+91-9999999999",
+                  "telephone": "+91-9999568910",
                   "contactType": "customer service"
                 }
               },

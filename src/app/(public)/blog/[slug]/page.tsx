@@ -33,6 +33,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  metadata.openGraph = {
+    title: post.seoTitle || `${post.title} | Kazzona Marketing`,
+    description: post.seoDesc || "Read this growth insight from Kazzona Marketing.",
+    url: `https://kazzonamarketing.com/blog/${post.slug}`,
+    images: [{ url: "/icon.svg", width: 1200, height: 630 }],
+    type: "article",
+    publishedTime: post.createdAt.toISOString(),
+    authors: ["Kazzona Marketing"],
+  };
+
+  metadata.twitter = {
+    card: "summary_large_image" as const,
+    title: post.seoTitle || `${post.title} | Kazzona Marketing`,
+    description: post.seoDesc || "Read this growth insight from Kazzona Marketing.",
+    images: ["/icon.svg"],
+  };
+
   return metadata;
 }
 

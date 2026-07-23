@@ -49,7 +49,7 @@ export default function ContactClient() {
   return (
     <div className="container mx-auto px-6 py-24 max-w-3xl">
       <h1 className="font-heading text-5xl font-bold mb-6 text-foreground animate-fade-down">
-        Get in <span className="text-primary">Touch</span>
+        Contact <span className="text-primary">Kazzona Marketing</span>
       </h1>
       <p className="text-xl text-muted-foreground leading-relaxed mb-12 animate-slide-left" style={{ animationDelay: "0.1s" }}>
         Ready to scale? Let&apos;s discuss your enterprise growth strategy.

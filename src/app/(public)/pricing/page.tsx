@@ -12,5 +12,24 @@ export const metadata: Metadata = {
 
 export default async function PricingPage() {
   const config = await getPricingConfig();
-  return <PricingPageClient config={config} />;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pricing | Kazzona Marketing",
+    "description": "Transparent pricing for Website Development, SEO Services, and Paid Advertising.",
+    "url": "https://kazzonamarketing.com/pricing",
+    "provider": {
+      "@type": "Organization",
+      "name": "Kazzona Marketing",
+      "url": "https://kazzonamarketing.com"
+    }
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <PricingPageClient config={config} />
+    </>
+  );
 }

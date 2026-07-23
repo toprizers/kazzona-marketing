@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Search, Code, Megaphone, Mail, PenTool, BarChart3, Link2 } from "lucide-react";
@@ -84,11 +85,13 @@ export function Header({
           {/* Dynamic Logo branding */}
           <Link href="/" className="flex items-center gap-2 group z-50">
             {logoUrl ? (
-              <img 
+              <Image 
                 src={logoUrl} 
                 alt={logoText} 
-                style={{ height: logoHeight, width: logoWidth }}
+                height={logoHeight}
+                width={logoWidth}
                 className="object-contain"
+                priority
               />
             ) : (
               <div 

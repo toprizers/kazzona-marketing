@@ -127,7 +127,7 @@ export function Footer({ config }: { config?: FooterConfigProps }) {
               {/* Render Link lists column */}
               {col.type === "links" && (
                 <div className="flex flex-col gap-4">
-                  <h4 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider">{col.title}</h4>
+                  <h3 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider">{col.title}</h3>
                   <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
                     {col.links?.map((link, li) => (
                       <li key={li}>
@@ -143,7 +143,7 @@ export function Footer({ config }: { config?: FooterConfigProps }) {
               {/* Render Contacts & Social links column */}
               {col.type === "contact" && (
                 <div className="flex flex-col gap-4">
-                  <h4 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider">{col.title}</h4>
+                  <h3 className="font-heading font-semibold text-foreground text-sm uppercase tracking-wider">{col.title}</h3>
                   <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
                     {col.email && (
                       <li className="flex items-center gap-2">

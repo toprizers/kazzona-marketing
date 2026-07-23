@@ -4,6 +4,21 @@ import EmailMarketingClient from "./EmailMarketingClient";
 export const metadata = {
   title: "Email Marketing Services in India | Kazzona Marketing",
   description: "Generate up to 30% of your total revenue from automated email flows. Klaviyo & Mailchimp experts for Indian D2C and B2B brands.",
+  alternates: {
+    canonical: "https://kazzonamarketing.com/services/email-marketing",
+  },
+  openGraph: {
+    title: "Email Marketing Services in India | Kazzona Marketing",
+    description: "Generate up to 30% of your total revenue from automated email flows. Klaviyo & Mailchimp experts for Indian D2C and B2B brands.",
+    url: "https://kazzonamarketing.com/services/email-marketing",
+    images: [{ url: "/icon.svg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Email Marketing Services in India | Kazzona Marketing",
+    description: "Generate up to 30% of your total revenue from automated email flows. Klaviyo & Mailchimp experts for Indian D2C and B2B brands.",
+    images: ["/icon.svg"],
+  },
 };
 
 export default async function EmailMarketingPage() {

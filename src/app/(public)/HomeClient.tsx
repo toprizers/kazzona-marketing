@@ -95,11 +95,11 @@ export default function HomeClient() {
                 <Zap className="w-4 h-4" /> Best Digital Marketing Agency in Delhi NCR
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.1]">
-                <span className="block">We Help Brands{" "}</span>
+                <span className="block">Digital Marketing Agency{" "}</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary">
-                  Scale Revenue
+                  Delhi NCR
                 </span>{" "}
-                <span>Digitally</span>
+                <span className="block">We Help Brands Scale Revenue Digitally</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-xl">
                 From Delhi startups to global enterprises — we've generated <strong className="text-foreground">₹100Cr+ in revenue</strong> for businesses through SEO, performance marketing, and premium web development.
@@ -221,8 +221,8 @@ export default function HomeClient() {
           <div className="flex min-w-full shrink-0 items-center gap-10 sm:gap-16 px-8 animate-marquee">
             {[
               { src: "/clients/1.png", alt: "TripNest" },
-              { src: "/clients/2.png", alt: "Client 2" },
-              { src: "/clients/3.png", alt: "Client 3" },
+              { src: "/clients/2.png", alt: "Kazzona Marketing Client" },
+              { src: "/clients/3.png", alt: "Kazzona Marketing Client" },
               { src: "/clients/4.png", alt: "Client 4" },
               { src: "/clients/5.jpg", alt: "Eris" },
               { src: "/clients/6.jpg", alt: "Client 6" },
@@ -245,8 +245,8 @@ export default function HomeClient() {
           <div className="flex min-w-full shrink-0 items-center gap-10 sm:gap-16 px-8 animate-marquee" aria-hidden>
             {[
               { src: "/clients/1.png", alt: "TripNest" },
-              { src: "/clients/2.png", alt: "Client 2" },
-              { src: "/clients/3.png", alt: "Client 3" },
+              { src: "/clients/2.png", alt: "Kazzona Marketing Client" },
+              { src: "/clients/3.png", alt: "Kazzona Marketing Client" },
               { src: "/clients/4.png", alt: "Client 4" },
               { src: "/clients/5.jpg", alt: "Eris" },
               { src: "/clients/6.jpg", alt: "Client 6" },

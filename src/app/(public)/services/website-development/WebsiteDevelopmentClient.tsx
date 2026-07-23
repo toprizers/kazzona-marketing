@@ -159,6 +159,31 @@ export default function WebsiteDevelopmentClient() {
         </div>
       </section>
 
+      {/* Related Services */}
+      <section className="py-16 border-t border-border">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+          <h2 className="text-2xl font-bold text-center mb-10">Related Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="/services/seo" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+              <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">SEO Optimization</h3>
+              <p className="text-sm text-muted-foreground">Rank #1 on Google India</p>
+            </Link>
+            <Link href="/services/advertisement" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+              <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Advertisement</h3>
+              <p className="text-sm text-muted-foreground">Google & Meta Ads</p>
+            </Link>
+            <Link href="/services/email-marketing" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+              <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Email Marketing</h3>
+              <p className="text-sm text-muted-foreground">Automated revenue flows</p>
+            </Link>
+            <Link href="/services/graphic-designing" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+              <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">Graphic Designing</h3>
+              <p className="text-sm text-muted-foreground">Premium branding & UI/UX</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-24">
         <div className="container mx-auto px-6 lg:px-12 max-w-5xl">

@@ -73,7 +73,7 @@ export default async function AboutPage() {
             <Heart className="w-4 h-4" /> Our Story
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            We Don&apos;t Just Do Marketing.{" "}
+            About Kazzona Marketing —{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">We Engineer Growth.</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -234,6 +234,39 @@ export default async function AboutPage() {
                 <p className="text-muted-foreground font-medium">Noida, India</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Internal Links - Services */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-6 max-w-5xl text-center">
+          <h2 className="text-3xl font-bold mb-8">Our Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="/services/seo" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+              <h3 className="font-semibold text-lg mb-2">SEO Optimization</h3>
+              <p className="text-sm text-muted-foreground">Rank #1 on Google India</p>
+            </Link>
+            <Link href="/services/website-development" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+              <h3 className="font-semibold text-lg mb-2">Website Development</h3>
+              <p className="text-sm text-muted-foreground">Premium custom websites</p>
+            </Link>
+            <Link href="/services/advertisement" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+              <h3 className="font-semibold text-lg mb-2">Advertisement</h3>
+              <p className="text-sm text-muted-foreground">Google & Meta Ads</p>
+            </Link>
+            <Link href="/services/email-marketing" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+              <h3 className="font-semibold text-lg mb-2">Email Marketing</h3>
+              <p className="text-sm text-muted-foreground">Automated revenue flows</p>
+            </Link>
+            <Link href="/services/graphic-designing" className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+              <h3 className="font-semibold text-lg mb-2">Graphic Designing</h3>
+              <p className="text-sm text-muted-foreground">Premium branding & UI/UX</p>
+            </Link>
+            <Link href="/contact" className="p-6 rounded-xl bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors">
+              <h3 className="font-semibold text-lg mb-2 text-primary">Get Started</h3>
+              <p className="text-sm text-muted-foreground">Free strategy call</p>
+            </Link>
           </div>
         </div>
       </section>

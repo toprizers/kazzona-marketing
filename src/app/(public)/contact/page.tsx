@@ -22,6 +22,20 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 
+  metadata.openGraph = {
+    title: metadata.title as string,
+    description: metadata.description as string,
+    url: "https://kazzonamarketing.com/contact",
+    images: [{ url: "/icon.svg", width: 1200, height: 630 }],
+  };
+
+  metadata.twitter = {
+    card: "summary_large_image" as const,
+    title: metadata.title as string,
+    description: metadata.description as string,
+    images: ["/icon.svg"],
+  };
+
   return metadata;
 }
 

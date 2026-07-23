@@ -25,6 +25,20 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
 
+  metadata.openGraph = {
+    title: metadata.title as string,
+    description: metadata.description as string,
+    url: "https://kazzonamarketing.com/case-studies",
+    images: [{ url: "/icon.svg", width: 1200, height: 630 }],
+  };
+
+  metadata.twitter = {
+    card: "summary_large_image" as const,
+    title: metadata.title as string,
+    description: metadata.description as string,
+    images: ["/icon.svg"],
+  };
+
   return metadata;
 }
 
@@ -148,8 +162,8 @@ export default async function CaseStudiesPage() {
             <TrendingUp className="w-4 h-4" /> Verified Results
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            Real Results.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Real Brands.</span>
+            Digital Marketing Case Studies —{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Real Results. Real Brands.</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             We don&apos;t believe in vanity metrics. Here are detailed case studies showing exactly how we helped companies grow their revenue through digital marketing.
