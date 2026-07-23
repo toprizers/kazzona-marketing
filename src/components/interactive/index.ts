@@ -1,4 +1,3 @@
-export { MouseGlow } from "./MouseGlow";
 export { FloatingOrbs } from "./FloatingOrbs";
 export { TiltCard } from "./TiltCard";
 export { CountUp } from "./CountUp";

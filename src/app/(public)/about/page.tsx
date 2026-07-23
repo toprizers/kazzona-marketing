@@ -68,7 +68,7 @@ export default async function AboutPage() {
       {/* SECTION 1: Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(99,102,241,0.15),transparent)] -z-10" />
-        <div className="container mx-auto px-6 max-w-5xl text-center">
+        <div className="container mx-auto px-6 max-w-5xl text-center animate-fade-down">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-semibold text-primary mb-6">
             <Heart className="w-4 h-4" /> Our Story
           </div>
@@ -86,7 +86,7 @@ export default async function AboutPage() {
       <section className="py-20 bg-card/30 border-y border-border/50">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="p-10 rounded-3xl bg-card border border-border/50">
+            <div className="p-10 rounded-3xl bg-card border border-border/50 animate-slide-left">
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                 <Target className="w-7 h-7 text-primary" />
               </div>
@@ -95,7 +95,7 @@ export default async function AboutPage() {
                 To democratize premium digital marketing for businesses in Delhi and beyond. Whether you&apos;re a bootstrapped D2C startup or an enterprise SaaS company, you deserve a growth partner that treats your money like their own. Every strategy we build is rooted in data, every campaign is optimized for ROI, and every rupee you invest is tracked to its outcome.
               </p>
             </div>
-            <div className="p-10 rounded-3xl bg-card border border-border/50">
+            <div className="p-10 rounded-3xl bg-card border border-border/50 animate-slide-right">
               <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
                 <Lightbulb className="w-7 h-7 text-accent" />
               </div>
@@ -111,7 +111,7 @@ export default async function AboutPage() {
       {/* SECTION 3: Stats */}
       <section className="py-20">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 animate-scale-up">
             {[
               { number: "200+", label: "Happy Clients", icon: Users },
               { number: "₹100Cr+", label: "Revenue Generated", icon: Rocket },
@@ -131,11 +131,11 @@ export default async function AboutPage() {
       {/* SECTION 4: Our Values */}
       <section className="py-20 bg-card/30 border-y border-border/50">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-down">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Our Core Values</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">These principles guide every decision we make and every campaign we run.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 animate-slide-bl" style={{ animationDelay: "0.1s" }}>
             {[
               { title: "Data Over Opinions", desc: "We don't guess. Every strategy is backed by data, analytics, and proven market insights. If the data says pivot, we pivot.", icon: "📊" },
               { title: "Transparency Always", desc: "No hidden fees, no vanity metrics, no BS. You get real-time dashboards, honest reporting, and direct access to your dedicated team.", icon: "🔍" },
@@ -157,12 +157,12 @@ export default async function AboutPage() {
       {/* SECTION 5: Team */}
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-down">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold mb-4 uppercase tracking-wider">The People</div>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Meet Our Leadership</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">50+ passionate marketers, developers, and designers — all based in India, all obsessed with growth.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 animate-slide-br" style={{ animationDelay: "0.1s" }}>
             {team.map((member, i) => (
               <div key={i} className="p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-colors group">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-2xl font-bold mb-6 group-hover:scale-110 transition-transform">
@@ -180,7 +180,7 @@ export default async function AboutPage() {
       {/* SECTION 6: Timeline */}
       <section className="py-24 bg-card/30 border-y border-border/50">
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-down">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Our Journey</h2>
             <p className="text-muted-foreground text-lg">From a small room in Noida to serving 200+ brands across India.</p>
           </div>
@@ -207,7 +207,7 @@ export default async function AboutPage() {
       {/* SECTION 7: Office / Location */}
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center animate-slide-left">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-4 uppercase tracking-wider">Visit Us</div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Office</h2>
@@ -241,7 +241,7 @@ export default async function AboutPage() {
       {/* SECTION 8: CTA */}
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-5xl text-center">
-          <div className="p-16 rounded-[3rem] bg-gradient-to-r from-primary via-orange-500 to-accent text-white relative overflow-hidden shadow-2xl">
+          <div className="p-16 rounded-[3rem] bg-gradient-to-r from-primary via-orange-500 to-accent text-white relative overflow-hidden shadow-2xl animate-fade-up">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 relative z-10">Want to Join Our Growth Story?</h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto relative z-10">Whether as a client or a team member, there&apos;s a place for you at Kazzona Marketing.</p>
             <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">

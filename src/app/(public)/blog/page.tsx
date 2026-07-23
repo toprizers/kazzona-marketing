@@ -35,7 +35,7 @@ export default async function BlogPage() {
 
   return (
     <div className="container mx-auto px-6 py-24 max-w-7xl">
-      <div className="mb-16">
+      <div className="mb-16 animate-fade-down">
         <h1 className="font-heading text-5xl font-bold mb-6 text-foreground">
           Growth <span className="text-primary">Insights</span>
         </h1>

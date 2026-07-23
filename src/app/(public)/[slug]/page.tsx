@@ -45,24 +45,59 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug: 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://kazzonamarketing.com"
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://kazzonamarketing.com"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": page.title,
+                  "item": `https://kazzonamarketing.com/${page.slug}`
+                }
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://kazzonamarketing.com/${page.slug}`
               },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": page.title,
-                "item": `https://kazzonamarketing.com/${page.slug}`
+              "headline": page.title,
+              "description": page.seoDesc || page.title,
+              "image": "https://kazzonamarketing.com/icon.svg",
+              "author": {
+                "@type": "Organization",
+                "name": "Kazzona Marketing",
+                "url": "https://kazzonamarketing.com"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Kazzona Marketing",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://kazzonamarketing.com/icon.svg"
+                }
+              },
+              "datePublished": page.publishAt ? page.publishAt.toISOString() : page.createdAt.toISOString(),
+              "dateModified": page.updatedAt.toISOString(),
+              "inLanguage": "en-IN",
+              "isAccessibleForFree": "True",
+              "keywords": page.primaryKeyword ? [page.primaryKeyword, page.secondaryKeyword].filter(Boolean).join(", ") : "Digital Marketing, SEO, Growth Strategy",
+              "reviewedBy": {
+                "@type": "Organization",
+                "name": "Kazzona Expert Team"
               }
-            ]
-          })
+            }
+          ])
         }}
       />
       {page.schemaMarkup && (

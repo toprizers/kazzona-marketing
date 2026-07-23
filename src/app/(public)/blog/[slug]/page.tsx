@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
+import { LeadCapturePopup } from "@/components/layout/LeadCapturePopup";
 
 export const dynamic = "force-dynamic";
 
@@ -65,30 +66,65 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://kazzonamarketing.com"
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://kazzonamarketing.com"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://kazzonamarketing.com/blog"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": post.title,
+                  "item": `https://kazzonamarketing.com/blog/${post.slug}`
+                }
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://kazzonamarketing.com/blog/${post.slug}`
               },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Blog",
-                "item": "https://kazzonamarketing.com/blog"
+              "headline": post.title,
+              "description": post.seoDesc || post.title,
+              "image": "https://kazzonamarketing.com/icon.svg",
+              "author": {
+                "@type": "Organization",
+                "name": "Kazzona Marketing",
+                "url": "https://kazzonamarketing.com"
               },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": post.title,
-                "item": `https://kazzonamarketing.com/blog/${post.slug}`
+              "publisher": {
+                "@type": "Organization",
+                "name": "Kazzona Marketing",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://kazzonamarketing.com/icon.svg"
+                }
+              },
+              "datePublished": post.publishAt ? post.publishAt.toISOString() : post.createdAt.toISOString(),
+              "dateModified": post.updatedAt.toISOString(),
+              "inLanguage": "en-IN",
+              "isAccessibleForFree": "True",
+              "keywords": post.primaryKeyword ? [post.primaryKeyword, post.secondaryKeyword].filter(Boolean).join(", ") : "Digital Marketing, SEO, Growth Strategy",
+              "reviewedBy": {
+                "@type": "Organization",
+                "name": "Kazzona SEO Team"
               }
-            ]
-          })
+            }
+          ])
         }}
       />
       {post.schemaMarkup && (
@@ -184,6 +220,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </aside>
       </div>
+      
+      {/* Lead Capture Popup */}
+      <LeadCapturePopup />
     </div>
   );
 }

@@ -143,7 +143,7 @@ export default async function CaseStudiesPage() {
       {/* SECTION 1: Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(6,182,212,0.15),transparent)] -z-10" />
-        <div className="container mx-auto px-6 max-w-5xl text-center">
+        <div className="container mx-auto px-6 max-w-5xl text-center animate-fade-down">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-semibold text-accent mb-6">
             <TrendingUp className="w-4 h-4" /> Verified Results
           </div>
@@ -160,7 +160,7 @@ export default async function CaseStudiesPage() {
       {/* SECTION 2: Summary Stats */}
       <section className="py-12 border-y border-border/50 bg-card/30">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center animate-scale-up">
             {[
               { icon: Users, number: "200+", label: "Clients Served" },
               { icon: IndianRupee, number: "₹100Cr+", label: "Revenue Generated" },
@@ -181,7 +181,7 @@ export default async function CaseStudiesPage() {
       {caseStudies.map((cs, i) => (
         <section key={i} className={`py-20 ${i % 2 === 0 ? "" : "bg-card/30 border-y border-border/50"}`}>
           <div className="container mx-auto px-6 max-w-7xl">
-            <div className={`grid lg:grid-cols-2 gap-12 items-start ${i % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}>
+            <div className={`grid lg:grid-cols-2 gap-12 items-start ${i % 2 === 0 ? "animate-slide-left" : "animate-slide-right"}`} style={{ animationDelay: `${i * 0.1}s` }}>
               <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
                 <div className="flex items-center gap-4 mb-6">
                   <div className={`w-16 h-16 rounded-3xl bg-gradient-to-br ${cs.color} flex items-center justify-center text-3xl`}>
@@ -230,7 +230,7 @@ export default async function CaseStudiesPage() {
       {/* Final CTA */}
       <section className="py-24">
         <div className="container mx-auto px-6 max-w-5xl text-center">
-          <div className="p-16 rounded-[3rem] bg-gradient-to-r from-primary via-orange-500 to-accent text-white relative overflow-hidden shadow-2xl">
+          <div className="p-16 rounded-[3rem] bg-gradient-to-r from-primary via-orange-500 to-accent text-white relative overflow-hidden shadow-2xl animate-fade-up">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 relative z-10">Want Results Like These?</h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto relative z-10">
               Every case study started with a single conversation. Let&apos;s discuss how we can transform your business.

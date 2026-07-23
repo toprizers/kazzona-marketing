@@ -24,6 +24,7 @@ export default function AutomationClient() {
   const [triggerLoading, setTriggerLoading] = useState(false);
   const [message, setMessage] = useState<{type: "success" | "error", text: string} | null>(null);
   const [customFreqMode, setCustomFreqMode] = useState(false);
+  const [logs, setLogs] = useState<{time: string, text: string, type: "info"|"success"|"error"}[]>([]);
 
   // Load configuration on mount
   useEffect(() => {
@@ -43,13 +44,23 @@ export default function AutomationClient() {
       if (isProcessing) return; // Prevent overlapping runs
       isProcessing = true;
       try {
-        console.log("Background daemon triggered autopilot run.");
-        await triggerAutopilotInstant();
+        const time = new Date().toLocaleTimeString();
+        setLogs(prev => [...prev.slice(-10), { time, text: "Triggering blog generation...", type: "info" }]);
+        
+        const res = await triggerAutopilotInstant();
         const cfg = await getAutopilotConfig();
         setConfig(cfg);
+        
+        const finishTime = new Date().toLocaleTimeString();
+        if (res?.success) {
+          setLogs(prev => [...prev.slice(-10), { time: finishTime, text: `Successfully generated: ${res.topic}`, type: "success" }]);
+        } else {
+          setLogs(prev => [...prev.slice(-10), { time: finishTime, text: `Error: ${res?.error || "Generation failed"}`, type: "error" }]);
+        }
+        
         router.refresh();
-      } catch (err) {
-        console.error("Background daemon error:", err);
+      } catch (err: any) {
+        setLogs(prev => [...prev.slice(-10), { time: new Date().toLocaleTimeString(), text: `Critical Error: ${err.message}`, type: "error" }]);
       } finally {
         isProcessing = false;
       }
@@ -192,24 +203,53 @@ export default function AutomationClient() {
             <CardDescription>Configure AI Autopilot niche blog posting settings.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Toggle Switch */}
-            <div className="flex items-center justify-between p-4 bg-secondary/10 border border-border/30 rounded-xl">
-              <div>
-                <p className="font-semibold text-sm flex items-center gap-2">
-                  <Play className="w-4 h-4 text-emerald-500" />
-                  Start / Run Background Daemon
-                </p>
-                <p className="text-xs text-muted-foreground mt-0.5">Toggle ON to keep generating blogs automatically in the background every X minutes.</p>
+            {/* Start / Stop Button & Logs */}
+            <div className="p-4 bg-secondary/10 border border-border/30 rounded-xl space-y-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <p className="font-semibold text-sm flex items-center gap-2">
+                    <Play className="w-4 h-4 text-emerald-500" />
+                    Background Generation Daemon
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">Start this to keep generating blogs continuously every X minutes without freezing your screen.</p>
+                </div>
+                <button
+                  onClick={() => handleToggleAutopilot(!config.enabled)}
+                  disabled={saveLoading}
+                  className={`px-6 py-2 rounded-lg font-bold shadow-lg transition-all ${
+                    config.enabled
+                      ? "bg-destructive/10 text-destructive hover:bg-destructive/20 shadow-destructive/20"
+                      : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-primary/20"
+                  }`}
+                >
+                  {saveLoading ? "Loading..." : config.enabled ? "Stop Daemon" : "Start Daemon"}
+                </button>
               </div>
-              <button
-                onClick={() => handleToggleAutopilot(!config.enabled)}
-                disabled={saveLoading}
-                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary/25 focus:ring-offset-2 ${config.enabled ? 'bg-primary' : 'bg-secondary'}`}
-              >
-                <span
-                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${config.enabled ? 'translate-x-5' : 'translate-x-0'}`}
-                />
-              </button>
+
+              {/* Running Logs UI */}
+              <div className="bg-black/80 rounded-lg p-4 font-mono text-xs overflow-hidden h-40 flex flex-col justify-end relative shadow-inner">
+                {logs.length === 0 ? (
+                  <p className="text-muted-foreground text-center">Daemon is idle. Waiting to start...</p>
+                ) : (
+                  <div className="space-y-1.5 overflow-y-auto custom-scrollbar flex flex-col justify-end min-h-full">
+                    {logs.map((log, i) => (
+                      <div key={i} className={`flex items-start gap-2 ${log.type === "error" ? "text-red-400" : log.type === "success" ? "text-emerald-400" : "text-gray-300"}`}>
+                        <span className="text-gray-500 shrink-0">[{log.time}]</span>
+                        <span>{log.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {config.enabled && (
+                  <div className="absolute top-2 right-3 flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span className="text-[10px] text-emerald-500 font-bold tracking-wider uppercase">Running</span>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Frequency Dropdown */}
@@ -233,8 +273,8 @@ export default function AutomationClient() {
                       handleUpdateFrequency(Number(val));
                     }
                   }}
-                  disabled={saveLoading}
-                  className="w-full bg-secondary/15 border border-border/40 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                  disabled={saveLoading || config.enabled}
+                  className="w-full bg-secondary/15 border border-border/40 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer disabled:opacity-50"
                 >
                   <option value={5}>5 Seconds (Demo / Testing)</option>
                   <option value={60}>1 Minute (Testing)</option>
