@@ -124,3 +124,28 @@ model ActiveVisitor {
   path      String   // current page
   lastSeen  DateTime @default(now())
 }
+
+model BackupLog {
+  id           String   @id @default(cuid())
+  filename     String
+  filepath     String
+  sizeBytes    Int
+  integrityOk  Boolean  @default(false)
+  integrityMsg String?
+  triggerType  String   @default("manual") // scheduled | pre-deploy | manual
+  status       String   @default("created") // created | verified | failed | deleted
+  createdAt    DateTime @default(now())
+}
+
+model DeployLog {
+  id          String    @id @default(cuid())
+  fromBranch  String
+  toBranch    String
+  commitHash  String?
+  commitMsg   String?
+  status      String    @default("pending") // pending | building | success | failed | rolled-back
+  backupId    String?
+  errorMsg    String?
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+}

@@ -14,6 +14,7 @@ import {
   CreditCard, 
   Blocks, 
   Settings,
+  Shield,
   LogOut,
   PanelTop,
   Menu
@@ -30,6 +31,7 @@ const sidebarLinks = [
   { name: "Automations", icon: Zap, href: "/dashboard/automations" },
   { name: "Testimonials", icon: Star, href: "/dashboard/testimonials" },
   { name: "Pricing", icon: CreditCard, href: "/dashboard/pricing" },
+  { name: "Ops", icon: Shield, href: "/dashboard/ops" },
   { name: "Settings", icon: Settings, href: "/dashboard/settings" },
 ];
 

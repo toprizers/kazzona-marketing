@@ -7,7 +7,12 @@
     "build": "prisma generate && prisma db push && node prisma/seed.js && next build",
     "start": "node server.js",
     "lint": "eslint",
-    "deploy": "node scripts/deploy.js"
+    "deploy": "node scripts/deploy.js",
+    "deploy:safe": "node scripts/deploy.js",
+    "backup": "node scripts/backup.js",
+    "backup:scheduled": "node scripts/backup.js --scheduled",
+    "restore": "node scripts/restore.js",
+    "health-check": "node scripts/health-check.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
