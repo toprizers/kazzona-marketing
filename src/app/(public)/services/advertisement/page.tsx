@@ -5,12 +5,12 @@ export const metadata = {
   title: "Performance Advertising in India | Kazzona Marketing",
   description: "Stop burning ad spend. We manage ₹2Cr+ in monthly ad spend across Google, Meta, and LinkedIn for Indian brands with a focus on pure ROAS.",
   alternates: {
-    canonical: "https://kazzonamarketing.com/services/advertisement",
+    canonical: "https://kazzona.com/services/advertisement",
   },
   openGraph: {
     title: "Performance Advertising in India | Kazzona Marketing",
     description: "Stop burning ad spend. We manage ₹2Cr+ in monthly ad spend across Google, Meta, and LinkedIn for Indian brands with a focus on pure ROAS.",
-    url: "https://kazzonamarketing.com/services/advertisement",
+    url: "https://kazzona.com/services/advertisement",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   },
   twitter: {
@@ -35,7 +35,7 @@ export default async function AdvertisementPage() {
             "provider": {
               "@type": "Organization",
               "name": "Kazzona Marketing",
-              "url": "https://kazzonamarketing.com"
+              "url": "https://kazzona.com"
             },
             "description": "Stop burning ad spend. We manage ₹2Cr+ in monthly ad spend across Google, Meta, and LinkedIn for Indian brands with a focus on pure ROAS.",
             "serviceType": "Google Ads, Meta Ads, LinkedIn Ads, PPC",

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   } else {
     metadata.alternates = {
-      canonical: `https://kazzonamarketing.com/${page.slug}`,
+      canonical: `https://kazzona.com/${page.slug}`,
     };
   }
 
@@ -54,13 +54,13 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug: 
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://kazzonamarketing.com"
+                  "item": "https://kazzona.com"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": page.title,
-                  "item": `https://kazzonamarketing.com/${page.slug}`
+                  "item": `https://kazzona.com/${page.slug}`
                 }
               ]
             },
@@ -69,22 +69,22 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug: 
               "@type": "Article",
               "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://kazzonamarketing.com/${page.slug}`
+                "@id": `https://kazzona.com/${page.slug}`
               },
               "headline": page.title,
               "description": page.seoDesc || page.title,
-              "image": "https://kazzonamarketing.com/icon.svg",
+              "image": "https://kazzona.com/icon.svg",
               "author": {
                 "@type": "Organization",
                 "name": "Kazzona Marketing",
-                "url": "https://kazzonamarketing.com"
+                "url": "https://kazzona.com"
               },
               "publisher": {
                 "@type": "Organization",
                 "name": "Kazzona Marketing",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://kazzonamarketing.com/icon.svg"
+                  "url": "https://kazzona.com/icon.svg"
                 }
               },
               "datePublished": page.publishAt ? page.publishAt.toISOString() : page.createdAt.toISOString(),

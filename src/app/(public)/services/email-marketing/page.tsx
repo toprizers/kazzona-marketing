@@ -5,12 +5,12 @@ export const metadata = {
   title: "Email Marketing Services in India | Kazzona Marketing",
   description: "Generate up to 30% of your total revenue from automated email flows. Klaviyo & Mailchimp experts for Indian D2C and B2B brands.",
   alternates: {
-    canonical: "https://kazzonamarketing.com/services/email-marketing",
+    canonical: "https://kazzona.com/services/email-marketing",
   },
   openGraph: {
     title: "Email Marketing Services in India | Kazzona Marketing",
     description: "Generate up to 30% of your total revenue from automated email flows. Klaviyo & Mailchimp experts for Indian D2C and B2B brands.",
-    url: "https://kazzonamarketing.com/services/email-marketing",
+    url: "https://kazzona.com/services/email-marketing",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   },
   twitter: {
@@ -35,7 +35,7 @@ export default async function EmailMarketingPage() {
             "provider": {
               "@type": "Organization",
               "name": "Kazzona Marketing",
-              "url": "https://kazzonamarketing.com"
+              "url": "https://kazzona.com"
             },
             "description": "Generate up to 30% of your total revenue from automated email flows. Klaviyo & Mailchimp experts for Indian D2C and B2B brands.",
             "serviceType": "Email Marketing, Klaviyo Automation, Newsletter Management",

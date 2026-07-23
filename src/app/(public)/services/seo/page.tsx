@@ -5,12 +5,12 @@ export const metadata = {
   title: "Enterprise SEO Services in India | Kazzona Marketing",
   description: "Rank #1 on Google India. We help Indian startups and enterprises dominate organic search, drive high-intent traffic, and scale revenue.",
   alternates: {
-    canonical: "https://kazzonamarketing.com/services/seo",
+    canonical: "https://kazzona.com/services/seo",
   },
   openGraph: {
     title: "Enterprise SEO Services in India | Kazzona Marketing",
     description: "Rank #1 on Google India. We help Indian startups and enterprises dominate organic search, drive high-intent traffic, and scale revenue.",
-    url: "https://kazzonamarketing.com/services/seo",
+    url: "https://kazzona.com/services/seo",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   },
   twitter: {
@@ -36,7 +36,7 @@ export default async function SEOPage() {
               "provider": {
                 "@type": "Organization",
                 "name": "Kazzona Marketing",
-                "url": "https://kazzonamarketing.com"
+                "url": "https://kazzona.com"
               },
               "description": "Rank #1 on Google India with data-driven SEO campaigns.",
               "areaServed": {

@@ -204,7 +204,7 @@ export async function getSiteSettings() {
       settings = await prisma.siteSettings.create({
         data: {
           id: "global",
-          robotsTxt: `User-agent: *\nAllow: /\nDisallow: /dashboard/\nDisallow: /api/\n\nSitemap: https://kazzonamarketing.com/sitemap.xml`,
+          robotsTxt: `User-agent: *\nAllow: /\nDisallow: /dashboard/\nDisallow: /api/\n\nSitemap: https://kazzona.com/sitemap.xml`,
         },
       });
     }

@@ -7,12 +7,12 @@ export const metadata = {
   title: "Blog | Digital Marketing Insights & Tips",
   description: "Expert insights on SEO, web development, email marketing, and digital advertising. Stay updated with the latest growth strategies from Kazzona Marketing.",
   alternates: {
-    canonical: "https://kazzonamarketing.com/blog",
+    canonical: "https://kazzona.com/blog",
   },
   openGraph: {
     title: "Blog | Digital Marketing Insights & Tips",
     description: "Expert insights on SEO, web development, email marketing, and digital advertising.",
-    url: "https://kazzonamarketing.com/blog",
+    url: "https://kazzona.com/blog",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   },
   twitter: {

@@ -222,12 +222,12 @@ export default function SEOClient() {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
         "headline": selectedItem?.title || "Target Post Headline",
-        "image": ["https://kazzonamarketing.com/default-preview.jpg"],
+        "image": ["https://kazzona.com/default-preview.jpg"],
         "datePublished": new Date().toISOString(),
         "author": {
           "@type": "Organization",
           "name": "Kazzona Marketing",
-          "url": "https://kazzonamarketing.com"
+          "url": "https://kazzona.com"
         }
       }, null, 2));
     } else if (type === "org") {
@@ -235,8 +235,8 @@ export default function SEOClient() {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Kazzona Marketing",
-        "url": "https://kazzonamarketing.com",
-        "logo": "https://kazzonamarketing.com/logo.png",
+        "url": "https://kazzona.com",
+        "logo": "https://kazzona.com/logo.png",
         "sameAs": [
           "https://twitter.com/kazzonamarketing",
           "https://linkedin.com/company/kazzonamarketing"
@@ -508,7 +508,7 @@ export default function SEOClient() {
                       type="text"
                       value={canonicalUrl}
                       onChange={(e) => setCanonicalUrl(e.target.value)}
-                      placeholder={`https://kazzonamarketing.com${getPublicUrl(selectedItem)}`}
+                      placeholder={`https://kazzona.com${getPublicUrl(selectedItem)}`}
                       className="w-full bg-secondary/15 border border-border/40 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 font-mono"
                     />
                     <p className="text-[10px] text-muted-foreground">Explicitly specifies preferred canonical URL address to resolve duplication issues.</p>
@@ -639,7 +639,7 @@ export default function SEOClient() {
                 <div className="p-4 bg-secondary/10 border border-border/20 rounded-xl flex items-center justify-between">
                   <div className="space-y-1">
                     <div className="text-sm font-bold text-foreground">Sitemap URL Address</div>
-                    <div className="text-xs text-muted-foreground font-mono">https://kazzonamarketing.com/sitemap.xml</div>
+                    <div className="text-xs text-muted-foreground font-mono">https://kazzona.com/sitemap.xml</div>
                   </div>
                   <a 
                     href="/sitemap.xml" 

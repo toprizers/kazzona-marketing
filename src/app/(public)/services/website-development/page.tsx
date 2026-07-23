@@ -4,12 +4,12 @@ export const metadata = {
   title: "Premium Website Development Agency | Kazzona Marketing",
   description: "High-ticket, custom-coded websites engineered for growth. We build premium, modern web experiences that convert visitors into clients.",
   alternates: {
-    canonical: "https://kazzonamarketing.com/services/website-development",
+    canonical: "https://kazzona.com/services/website-development",
   },
   openGraph: {
     title: "Premium Website Development Agency | Kazzona Marketing",
     description: "High-ticket, custom-coded websites engineered for growth. We build premium, modern web experiences that convert visitors into clients.",
-    url: "https://kazzonamarketing.com/services/website-development",
+    url: "https://kazzona.com/services/website-development",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   },
   twitter: {
@@ -28,8 +28,8 @@ export default function WebsiteDevelopmentPage() {
     "provider": {
       "@type": "Organization",
       "name": "Kazzona Marketing",
-      "url": "https://kazzonamarketing.com",
-      "logo": "https://kazzonamarketing.com/icon.svg"
+      "url": "https://kazzona.com",
+      "logo": "https://kazzona.com/icon.svg"
     },
     "description": "High-ticket, custom-coded websites engineered for growth. We build premium, modern web experiences that convert visitors into clients.",
     "serviceType": "Website Development, Next.js Development, Custom Web Apps",

@@ -21,14 +21,14 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } else {
     metadata.alternates = {
-      canonical: "https://kazzonamarketing.com/case-studies",
+      canonical: "https://kazzona.com/case-studies",
     };
   }
 
   metadata.openGraph = {
     title: metadata.title as string,
     description: metadata.description as string,
-    url: "https://kazzonamarketing.com/case-studies",
+    url: "https://kazzona.com/case-studies",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   };
 

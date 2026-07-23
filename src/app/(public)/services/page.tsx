@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } else {
     metadata.alternates = {
-      canonical: "https://kazzonamarketing.com/services",
+      canonical: "https://kazzona.com/services",
     };
   }
 

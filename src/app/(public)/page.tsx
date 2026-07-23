@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } else {
     metadata.alternates = {
-      canonical: "https://kazzonamarketing.com",
+      canonical: "https://kazzona.com",
     };
   }
 
@@ -55,10 +55,10 @@ export default async function HomePage() {
             "@graph": [
               {
                 "@type": "Organization",
-                "@id": "https://kazzonamarketing.com/#organization",
+                "@id": "https://kazzona.com/#organization",
                 "name": "Kazzona Marketing",
-                "url": "https://kazzonamarketing.com",
-                "logo": "https://kazzonamarketing.com/logo.png",
+                "url": "https://kazzona.com",
+                "logo": "https://kazzona.com/logo.png",
                 "description": "Kazzona Marketing is a performance-driven digital marketing agency in Delhi NCR specializing in ROI-focused SEO, Ads, and Web Development for enterprise clients.",
                 "sameAs": [
                   "https://www.linkedin.com/company/kazzona-marketing"

@@ -18,14 +18,14 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } else {
     metadata.alternates = {
-      canonical: "https://kazzonamarketing.com/contact",
+      canonical: "https://kazzona.com/contact",
     };
   }
 
   metadata.openGraph = {
     title: metadata.title as string,
     description: metadata.description as string,
-    url: "https://kazzonamarketing.com/contact",
+    url: "https://kazzona.com/contact",
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
   };
 

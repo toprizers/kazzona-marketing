@@ -14,7 +14,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kazzonamarketing.com"),
+  metadataBase: new URL("https://kazzona.com"),
   title: {
     default: "Kazzona Marketing Agency | Strategy. Creativity. Results.",
     template: "%s | Kazzona Marketing",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://kazzonamarketing.com",
+    url: "https://kazzona.com",
     title: "Kazzona Marketing Agency | Strategy. Creativity. Results.",
     description: "We don't just market. We grow brands. Data-driven SEO, premium web development, and high-ROI advertising.",
     siteName: "Kazzona Marketing Agency",
@@ -91,9 +91,9 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Kazzona Marketing Agency",
-              "image": "https://kazzonamarketing.com/icon.svg",
-              "@id": "https://kazzonamarketing.com",
-              "url": "https://kazzonamarketing.com",
+              "image": "https://kazzona.com/icon.svg",
+              "@id": "https://kazzona.com",
+              "url": "https://kazzona.com",
               "telephone": "+91-9999568910",
               "email": "official.kazzona@gmail.com",
               "address": {
@@ -146,7 +146,7 @@ export default async function RootLayout({
             }}
           />
         )}
-        <link rel="alternate" hrefLang="en-IN" href="https://kazzonamarketing.com" />
+        <link rel="alternate" hrefLang="en-IN" href="https://kazzona.com" />
         {settings?.globalHeadCode && (
           <div
             style={{ display: "none" }}

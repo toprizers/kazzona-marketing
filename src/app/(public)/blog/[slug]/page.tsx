@@ -29,14 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   } else {
     metadata.alternates = {
-      canonical: `https://kazzonamarketing.com/blog/${post.slug}`,
+      canonical: `https://kazzona.com/blog/${post.slug}`,
     };
   }
 
   metadata.openGraph = {
     title: post.seoTitle || `${post.title} | Kazzona Marketing`,
     description: post.seoDesc || "Read this growth insight from Kazzona Marketing.",
-    url: `https://kazzonamarketing.com/blog/${post.slug}`,
+    url: `https://kazzona.com/blog/${post.slug}`,
     images: [{ url: "/icon.svg", width: 1200, height: 630 }],
     type: "article",
     publishedTime: post.createdAt.toISOString(),
@@ -92,19 +92,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://kazzonamarketing.com"
+                  "item": "https://kazzona.com"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": "Blog",
-                  "item": "https://kazzonamarketing.com/blog"
+                  "item": "https://kazzona.com/blog"
                 },
                 {
                   "@type": "ListItem",
                   "position": 3,
                   "name": post.title,
-                  "item": `https://kazzonamarketing.com/blog/${post.slug}`
+                  "item": `https://kazzona.com/blog/${post.slug}`
                 }
               ]
             },
@@ -113,22 +113,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               "@type": "BlogPosting",
               "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": `https://kazzonamarketing.com/blog/${post.slug}`
+                "@id": `https://kazzona.com/blog/${post.slug}`
               },
               "headline": post.title,
               "description": post.seoDesc || post.title,
-              "image": "https://kazzonamarketing.com/icon.svg",
+              "image": "https://kazzona.com/icon.svg",
               "author": {
                 "@type": "Organization",
                 "name": "Kazzona Marketing",
-                "url": "https://kazzonamarketing.com"
+                "url": "https://kazzona.com"
               },
               "publisher": {
                 "@type": "Organization",
                 "name": "Kazzona Marketing",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://kazzonamarketing.com/icon.svg"
+                  "url": "https://kazzona.com/icon.svg"
                 }
               },
               "datePublished": post.publishAt ? post.publishAt.toISOString() : post.createdAt.toISOString(),
